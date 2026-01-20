@@ -11,7 +11,6 @@ namespace SingleTonPattern
         private static VoteMachine instance;
         private int votes = 0;
         private List<VotingPeople> votingPeoples = new List<VotingPeople>();
-        private List<string> Parties = new List<string>();
 
         private string adminpassword = "AdminPassword123";
 

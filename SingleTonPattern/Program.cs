@@ -47,7 +47,7 @@ namespace SingleTonPattern
             {
                 int partyindx = ListUpPartiesAndVote(Partieslst);
 
-                string VotedParty = Partieslst[partyindx];
+                string VotedParty = Partieslst[partyindx +1];
 
                 Console.Write("Please enter your First Name: ");
                 firstname = Console.ReadLine();
