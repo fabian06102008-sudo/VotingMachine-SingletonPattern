@@ -9,9 +9,27 @@ namespace SingleTonPattern
 {
     internal class Program
     {
+        static int ListUpPartiesAndVote(List<string> partieslst)
+        {
+            Console.Clear();
+            Console.WriteLine("|| Parties ||\n\n");
+            for (int i = 0; i < partieslst.Count; i++)
+            {
+
+                Console.WriteLine((i + 1) + ".) " + partieslst[i]);
+            }
+
+            Console.Write("Vote for a Party: ");
+            int partyindex = Convert.ToInt32(Console.ReadLine());
+
+            return partyindex;
+        }
+
         static void AddVoter()
         {
             Console.Clear();
+
+            VoteMachine vm_addvoter = VoteMachine.Instance;
 
             string firstname;
             string lastname;
@@ -22,38 +40,51 @@ namespace SingleTonPattern
 
             fingerprint = rnd.Next(1, 222222222).ToString();
 
-            Console.Write("Please enter your First Name: ");
-            firstname = Console.ReadLine();
 
-            Console.Write("\nPlease enter your Last Name: ");
-            lastname = Console.ReadLine();
+            List<string> Partieslst = vm_addvoter.PartyListCheck();
 
-            Console.Write("\nPlease enter your age: ");
             try
             {
+                int partyindx = ListUpPartiesAndVote(Partieslst);
 
-                Console.Clear();
-                age = Convert.ToInt16(Console.ReadLine());
+                string VotedParty = Partieslst[partyindx];
 
-                if (age >= 18)
+                Console.Write("Please enter your First Name: ");
+                firstname = Console.ReadLine();
+
+                Console.Write("\nPlease enter your Last Name: ");
+                lastname = Console.ReadLine();
+
+                Console.Write("\nPlease enter your age: ");
+                try
                 {
-                    VotingPeople votedguy = new VotingPeople(firstname, lastname, age, fingerprint);
-                    VoteMachine vm = VoteMachine.Instance;
-                    vm.AddVote(votedguy);
-                    Console.WriteLine($"Hello, {firstname + " " + lastname} you succsessfully voted");
-                }
-                else
-                {
-                    Console.WriteLine($"Hey, {firstname + " " + lastname} sorry... you cannot vote with your age. (You have to be 18+)");
-                }
 
+                    Console.Clear();
+                    age = Convert.ToInt16(Console.ReadLine());
+
+                    if (age >= 18)
+                    {
+                        VotingPeople votedguy = new VotingPeople(firstname, lastname, age, fingerprint, VotedParty);
+                        VoteMachine vm = VoteMachine.Instance;
+                        vm.AddVote(votedguy);
+                        Console.WriteLine($"Hello, {firstname + " " + lastname} you succsessfully voted");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Hey, {firstname + " " + lastname} sorry... you cannot vote with your age. (You have to be 18+)");
+                    }
+
+                }
+                catch (Exception exmsg)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please enter a number for the age...!");
+                }
             }
-            catch (Exception exmsg)
+            catch
             {
-                Console.Clear();
-                Console.WriteLine("Please enter a number for the age...!");
+                Console.WriteLine("Please enter a Valid Party-Index..!");
             }
-
             Console.ReadKey();
 
         }
@@ -104,7 +135,7 @@ namespace SingleTonPattern
                         Console.Write("Please enter the admin password: ");
                         string admpwd = Console.ReadLine();
 
-                        Console.Clear() ;
+                        Console.Clear();
 
                         VoteMachine vm_seevoters = VoteMachine.Instance;
 
