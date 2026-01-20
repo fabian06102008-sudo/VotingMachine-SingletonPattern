@@ -12,10 +12,11 @@
 ### Fixed
 - Fixed Party-Index (Always one (+1) ahead)
 
-## [1.0.0] – Initial Release - 20.01.2026
+<br>
+<br>
 
-<br>
-<br>
+
+## [1.0.0] – Initial Release - 20.01.2026
 
 ### Added
 - Initial implementation of the **Singleton Pattern** via `VoteMachine`
