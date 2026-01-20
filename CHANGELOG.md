@@ -5,14 +5,17 @@
 
 ## [2.0.0] – Initial Release - 20.01.2026
 
-# Added
+### Added
 - Added Party-Votes
 - Added string attribute for the voted party in VotingPeople.cs
 
-# Fixed
+### Fixed
 - Fixed Party-Index (Always one (+1) ahead)
 
 ## [1.0.0] – Initial Release - 20.01.2026
+
+<br>
+<br>
 
 ### Added
 - Initial implementation of the **Singleton Pattern** via `VoteMachine`

@@ -16,7 +16,7 @@ namespace SingleTonPattern
 
         private VoteMachine()
         {
-            
+
         }
 
         public List<string> PartyListCheck()
